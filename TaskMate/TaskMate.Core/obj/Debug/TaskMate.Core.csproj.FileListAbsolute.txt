@@ -1,0 +1,5 @@
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.Core\bin\Debug\TaskMate.Core.dll
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.Core\bin\Debug\TaskMate.Core.pdb
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.Core\obj\Debug\TaskMate.Core.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.Core\obj\Debug\TaskMate.Core.dll
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.Core\obj\Debug\TaskMate.Core.pdb

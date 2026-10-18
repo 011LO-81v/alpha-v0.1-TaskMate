@@ -1,0 +1,109 @@
+<UserControl x:Class="TaskMate.Views.AnadirTareaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TaskMate.ViewModels">
+
+    <UserControl.DataContext>
+        <vm:AnadirTareaViewModel/>
+    </UserControl.DataContext>
+
+    <StackPanel>
+        <TextBlock Text="Nueva Tarea" Style="{StaticResource PageTitle}" Margin="0,0,0,20"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ========== Columna izquierda ========== -->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Título de la tarea" Style="{StaticResource FieldLabel}"/>
+                <TextBox Style="{StaticResource AppTextBox}" Margin="0,0,0,16"
+                         Text="{Binding Titulo, UpdateSourceTrigger=PropertyChanged}"
+                         Tag="Escribe el nombre de la tarea..."/>
+
+                <TextBlock Text="Descripción" Style="{StaticResource FieldLabel}"/>
+                <TextBox Style="{StaticResource AppTextBoxMultiline}" Margin="0,0,0,16" Height="90"
+                         Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Proyecto" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox Style="{StaticResource AppComboBox}" ItemsSource="{Binding Proyectos}"
+                                  SelectedItem="{Binding ProyectoSeleccionado}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Responsable" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox Style="{StaticResource AppComboBox}" ItemsSource="{Binding Responsables}"
+                                  SelectedItem="{Binding ResponsableSeleccionado}"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Etiquetas" Style="{StaticResource FieldLabel}"/>
+                <TextBox Style="{StaticResource AppTextBox}"
+                         Text="{Binding Etiquetas, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- ========== Columna derecha ========== -->
+            <StackPanel Grid.Column="2">
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Prioridad" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox Style="{StaticResource AppComboBox}" ItemsSource="{Binding Prioridades}"
+                                  SelectedItem="{Binding PrioridadSeleccionada}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Estado" Style="{StaticResource FieldLabel}"/>
+                        <ComboBox Style="{StaticResource AppComboBox}" ItemsSource="{Binding Estados}"
+                                  SelectedItem="{Binding EstadoSeleccionado}"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Fecha de inicio" Style="{StaticResource FieldLabel}"/>
+                        <TextBox Style="{StaticResource AppTextBox}" Text="{Binding FechaInicio, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Fecha límite" Style="{StaticResource FieldLabel}"/>
+                        <TextBox Style="{StaticResource AppTextBox}" Text="{Binding FechaLimite, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Subtareas" Style="{StaticResource FieldLabel}"/>
+                <TextBox Style="{StaticResource AppTextBox}" Margin="0,0,0,16"
+                         Text="{Binding Subtareas, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Comentarios" Style="{StaticResource FieldLabel}"/>
+                <TextBox Style="{StaticResource AppTextBoxMultiline}" Height="90"
+                         Text="{Binding Comentarios, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+
+        <Border BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="0,1,0,0" Margin="0,24,0,18"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancelar" Style="{StaticResource SecondaryButton}" Margin="0,0,10,0"
+                    Command="{Binding CancelarCommand}"/>
+            <Button Content="Guardar tarea" Style="{StaticResource PrimaryButton}"
+                    Command="{Binding GuardarCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

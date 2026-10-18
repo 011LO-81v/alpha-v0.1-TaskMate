@@ -1,0 +1,20 @@
+﻿TaskMate.UI
+
+
+winexe
+C#
+.cs
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.UI\obj\Debug\
+TaskMate.UI
+none
+false
+DEBUG;TRACE
+C:\Users\USUARIO\Documents\PROYECTOS DE PROGRAMACION\TASKMATE\TasKMate\TaskMate.UI\App.xaml
+141012319662
+
+351511068141
+151680220465
+MainWindow.xaml;DashboardWindow.xaml;Resources\Styles.xaml;Views\AjustesView.xaml;Views\AnadirTareaView.xaml;Views\BandejaEntradaView.xaml;Views\BuscadorView.xaml;Views\CalendarioView.xaml;Views\EquipoView.xaml;Views\FiltroView.xaml;Views\MiUsuarioView.xaml;Views\NotificacionesView.xaml;Views\ProyectosView.xaml;Views\ReportesView.xaml;
+
+True
+

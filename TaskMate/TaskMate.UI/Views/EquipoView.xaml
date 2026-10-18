@@ -1,0 +1,125 @@
+<UserControl x:Class="TaskMate.Views.EquipoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TaskMate.ViewModels"
+             xmlns:hlp="clr-namespace:TaskMate.Helpers">
+
+    <UserControl.DataContext>
+        <vm:EquipoViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <hlp:BadgeBackgroundConverter x:Key="BadgeBg"/>
+        <hlp:BadgeForegroundConverter x:Key="BadgeFg"/>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <Grid Margin="0,0,0,20">
+            <TextBlock Text="Mi Equipo" Style="{StaticResource PageTitle}"/>
+            <Button Content="+ Agregar miembro" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right"
+                    Command="{Binding AgregarMiembroCommand}"/>
+        </Grid>
+
+        <Border Style="{StaticResource CardBorder}" Padding="0">
+            <StackPanel>
+                <!-- Encabezado de tabla -->
+                <Border Background="{StaticResource SubtleBg}" CornerRadius="8,8,0,0" Padding="20,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="190"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Nombre" FontFamily="Segoe UI Semibold" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="1" Text="Rol" FontFamily="Segoe UI Semibold" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="2" Text="Estado" FontFamily="Segoe UI Semibold" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="3" Text="Tareas" FontFamily="Segoe UI Semibold" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="4" Text="Proyectos" FontFamily="Segoe UI Semibold" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                    </Grid>
+                </Border>
+
+                <ItemsControl ItemsSource="{Binding Miembros}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="0,0,0,1" Padding="20,14">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="190"/>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                        <Border Width="34" Height="34" CornerRadius="17" Background="{StaticResource SubtleBg}">
+                                            <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="15"
+                                                       Foreground="{StaticResource TextSecondary}"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Nombre}" FontFamily="Segoe UI Semibold" FontSize="13.5"/>
+                                            <TextBlock Text="{Binding Email}" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Column="1" Text="{Binding Rol}" FontSize="13" VerticalAlignment="Center"/>
+
+                                    <Border Grid.Column="2" Style="{StaticResource Badge}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Background="{Binding Estado, Converter={StaticResource BadgeBg}}">
+                                        <TextBlock Text="{Binding Estado}" Style="{StaticResource BadgeText}"
+                                                   Foreground="{Binding Estado, Converter={StaticResource BadgeFg}}"/>
+                                    </Border>
+
+                                    <TextBlock Grid.Column="3" FontSize="13" VerticalAlignment="Center">
+                                        <Run Text="{Binding TareasAsignadas}"/><Run Text=" asignadas"/>
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Column="4" FontSize="13" VerticalAlignment="Center">
+                                        <Run Text="{Binding ProyectosActivos}"/><Run Text=" activos"/>
+                                    </TextBlock>
+
+                                    <Button Grid.Column="5" x:Name="MenuButton" Background="Transparent" BorderThickness="0"
+                                            Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            Command="{Binding DataContext.ToggleMenuCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}">
+                                        <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="{StaticResource TextSecondary}"/>
+                                    </Button>
+
+                                    <Popup PlacementTarget="{Binding ElementName=MenuButton}" Placement="Bottom"
+                                           IsOpen="{Binding MenuAbierto, Mode=TwoWay}" StaysOpen="False" AllowsTransparency="True"
+                                           HorizontalOffset="-110" VerticalOffset="4">
+                                        <Border Background="White" BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                                                CornerRadius="6" Width="150" Padding="4">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="#000000" Opacity="0.12" BlurRadius="14" ShadowDepth="3"/>
+                                            </Border.Effect>
+                                            <StackPanel>
+                                                <Button Content="Ver perfil" Style="{StaticResource SidebarButton}" HorizontalContentAlignment="Left"
+                                                        Command="{Binding DataContext.VerPerfilCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Content="Ver tareas" Style="{StaticResource SidebarButton}" HorizontalContentAlignment="Left"
+                                                        Command="{Binding DataContext.VerTareasCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Content="Editar" Style="{StaticResource SidebarButton}" HorizontalContentAlignment="Left"
+                                                        Command="{Binding DataContext.EditarCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Content="Desactivar usuario" Foreground="#DC2626" Style="{StaticResource SidebarButton}" HorizontalContentAlignment="Left"
+                                                        Command="{Binding DataContext.DesactivarCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>
