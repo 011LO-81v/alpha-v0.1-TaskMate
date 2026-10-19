@@ -57,6 +57,13 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\BadgeConverters.cs" />
     <Compile Include="Helpers\ExtraConverters.cs" />
+    <Compile Include="Models\CalendarDayModel.cs" />
+    <Compile Include="Models\NotificacionModel.cs" />
+    <Compile Include="Models\ProductividadModel.cs" />
+    <Compile Include="Models\ProgresoItemModel.cs" />
+    <Compile Include="Models\ProyectoModel.cs" />
+    <Compile Include="Models\TareaModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="ViewModels\AjustesViewModel.cs" />
     <Compile Include="ViewModels\AnadirTareaViewModel.cs" />
     <Compile Include="ViewModels\BandejaEntradaViewModel.cs" />

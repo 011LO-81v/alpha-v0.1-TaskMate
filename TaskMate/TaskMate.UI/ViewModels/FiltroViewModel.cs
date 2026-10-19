@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
-using TaskMate.Helpers;
-using TaskMate.Models;
+using TaskMate.UI.Helpers;
+using TaskMate.UI.Models;
 
 namespace TaskMate.ViewModels
 {
