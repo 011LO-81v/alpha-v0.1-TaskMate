@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using TaskMate.Helpers;
-using TaskMate.Views;
+using TaskMate.UI.Helpers;
+using TaskMate.UI.Views;
 
 namespace TaskMate.ViewModels
 {
